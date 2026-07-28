@@ -3,6 +3,9 @@ name: Flask CI Workflow
 on:
   workflow_dispatch:
 
+env:
+  APP_DIR: 03-Actions/project-files
+  
 jobs:
   flask-ci-job:
     runs-on: ubuntu-latest
@@ -13,7 +16,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t cwwj-flask-app:v1.0.0 .
+          docker build -t cwwj-flask-app:v1.0.0 -f $APP_DIR/Dockerfile $APP_DIR
 
       - name: Run Container
         run: |
